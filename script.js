@@ -4,49 +4,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
-    // Function to add a task
+    // Function to add a new task
     function addTask() {
-        // Retrieve and trim the input value
+        // Get the trimmed input value
         const taskText = taskInput.value.trim();
 
-        // If task input is empty, alert user
+        // Alert user if task input is empty
         if (taskText === '') {
             alert('Please enter a task.');
             return;
         }
 
-        // Create a new list item for the task
+        // Create a new list item (li)
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Create a remove button
+        // Create a "Remove" button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
-        removeBtn.className = 'remove-btn';
 
-        // Add event listener to remove button
+        // Add the 'remove-btn' class using classList.add
+        removeBtn.classList.add('remove-btn');
+
+        // Assign onclick event to remove the task
         removeBtn.onclick = () => {
             taskList.removeChild(li);
         };
 
-        // Append button and list item to task list
+        // Append button to list item and item to the task list
         li.appendChild(removeBtn);
         taskList.appendChild(li);
 
-        // Clear the input field after adding a task
+        // Clear the input field
         taskInput.value = '';
     }
 
-    // Event listener for the "Add Task" button
+    // Event listener for "Add Task" button
     addButton.addEventListener('click', addTask);
 
-    // Event listener for pressing "Enter" key
+    // Event listener for Enter key
     taskInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
             addTask();
         }
     });
-
-    // Optionally invoke logic on DOM load if needed
-    // (can be used for loading saved tasks from storage)
 });
